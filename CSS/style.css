@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Hind', sans-serif;
+}
+
+/* HEADER */
+header {
+    /* mất kích thước thẻ
+    height: lấy height của con
+    
+     */
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    left: 0;
+    /* z-index: quy định thứ tự của position 
+    999999: trong trường hợp web quá dài, nhiều page con và phát triển lâu*/
+    z-index: 100;
+}
+
+header .nav-link,
+header .navbar-brand {
+    color: white;
+}
+
+
+header .nav-item {
+    padding: 0 10px;
+}
+
+/* before, after: inline */
+/* trước khi hover */
+header .nav-item::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #35a22c;
+
+    /* display: inline-block; xét được kích thước, sắp các con trên 1 hàng => không dùng với BS4*/
+
+    transition: all 0.5s;
+}
+
+/* sau khi hover */
+
+header .nav-item:hover::after {
+    width: 100%;
+}
+
+header .nav-item.active::after {
+    width: 100%;
+    color: #35a22c;
+}
+
+header .active a.nav-link {
+    color: #35a22c;
+}
+
+/* NẰM CUỐI VÙNG CHÍNH */
+
+
+
+/* CAROUSEL */
+/* Issue1 : hình nền */
+#carouselPort .carousel-item>img {
+    /* 100%, 100vh (viewport: khung browser)) */
+    /* 
+    đa phần dùng cho màn hình laptop trở xuống
+    vh: viewport height (hình nền của carousel)
+    vw: viewport width (font-size câu slogan, giữ toàn vẹn ý nghĩa)
+     */
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+/* Issue2 : ảnh avatar */
+#carouselPort .carousel-caption img {
+    width: 140px;
+    border-radius: 50%;
+}
+
+/* Issue3 : căn giữa caption, (position ablute) */
+#carouselPort .carousel-caption {
+    /* % lấy theo thẻ cha */
+    top: 50%;
+    left: 50%;
+    /* % lấy theo thẻ con */
+    transform: translate(-50%, -50%);
+}
+
+/* feature */
+.feature {
+    background: url(../img/3.jpg) no-repeat center;
+    background-size: cover;
+    padding: 100px 0 120px;
+    background-attachment: fixed;
+    position: relative
+}
+
+.feature .overlay {
+    background: rgba(7, 10, 12, .72)
+}
+
+.feature .heading {
+    position: relative
+}
+
+.feature__item {
+    padding: 40px 40px;
+    transition: .3s;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .1);
+    backdrop-filter: blur(3px);
+    transition: all .5s
+}
+
+.feature__item i {
+    font-size: 48px;
+    color: #35a22c
+}
+
+.feature__item h4 {
+    font-size: 20px;
+    color: #fff;
+    line-height: 30px;
+    padding-top: 25px;
+    font-weight: 800
+}
+
+.feature__item p {
+    padding-top: 15px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff
+}
+
+.feature__item:hover {
+    background: #000;
+    border-color: #fff
+}
+
+
+
+/* projects */
+.projects__row {
+    /* thêm gap ở trên dưới */
+    gap: 30px 0;
+}
+
+.projects__content .nav {
+    justify-content: center;
+}
+
+/* award */
+.award {
+    background-image: url(../img/memphis_3.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+.award__left {
+    padding: 45px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .3);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* Reponsive */
+@media screen and (max-width: 992px) {
+
+    /* quy định css riêng cho vùng <= 992px */
+    header .navbar-toggler {
+        background-color: #35a22c;
+        color: white;
+
+    }
+
+    #navbarSupportedContent .navbar-nav {
+        background-color: white;
+    }
+
+    #navbarSupportedContent .nav-link {
+        color: #35a22c;
+    }
+
+    header .nav-item:hover::after,
+    header .nav-item.active::after {
+        width: 0;
+    }
+
+    #navbarSupportedContent .nav-item:hover {
+        background-color: #35a22c;
+    }
+
+    #navbarSupportedContent .nav-item:hover .nav-link {
+        color: white;
+    }
+
+    /* không sử dụng trực tiếp class màn hình của BS khi đè code media theo desktop first => .container-xl {
+    }*/
+
+}
